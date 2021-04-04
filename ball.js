@@ -90,48 +90,26 @@ class Ball {
         // bottom bound
         if (this.y + props.radius >= sceneProps.height) {
             this.velY *= -1
-            this.y = sceneProps.height*2 - this.y
+            this.y = Math.min(sceneProps.height*2 - this.y,sceneProps.height-props.radius)
         }
         // top bound
         if (this.y - props.radius <= 0) {
             this.velY *= -1
-            this.y = -this.y
+            this.y = Math.max(-this.y,props.radius)
         }
 
         // left bound
         if (this.x - props.radius <= 0) {
             this.velX *= -1
-            this.x = -this.x
+            this.x = Math.max(-this.x,props.radius)
         }
         // right bound
         if (this.x + props.radius >= sceneProps.width) {
             this.velX *= -1
-            this.x = sceneProps.width*2 - this.x
+            this.x = Math.min(sceneProps.width*2 - this.x,sceneProps.width-props.radius)
         }
 
         this.collide(others)
-
-        // bottom bound
-        if (this.y + props.radius + this.velY >= sceneProps.height) {
-            this.velY *= -1
-            this.y = sceneProps.height - props.radius
-        }
-        // top bound
-        if (this.y - props.radius + this.velY <= 0) {
-            this.velY *= -1
-            this.y = props.radius
-        }
-
-        // left bound
-        if (this.x - props.radius + this.velX <= 0) {
-            this.velX *= -1
-            this.x = props.radius
-        }
-        // right bound
-        if (this.x + props.radius + this.velX >= sceneProps.width) {
-            this.velX *= -1
-            this.x = sceneProps.width - props.radius
-        }
 
         // update position
         this.x += this.velX
