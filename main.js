@@ -42,7 +42,7 @@ class Scene {
         // build an array of ball objects
         const balls = []
 
-        for (let i = 0; i < 31; i++) {
+        for (let i = 0; i < 30; i++) {
             balls.push(
                 new Ball(
                     // random X Y position
@@ -86,7 +86,6 @@ class Scene {
         var collision = 0
         balls.forEach(ball => { velocity += Math.sqrt(ball.velX * ball.velX + ball.velY * ball.velY), collision += ball.props.hue })
         velocity /= balls.length
-        velocity *= 20
         this.velocities.push(velocity)
         this.collisions.push(collision)
         chart.reset()
