@@ -95,13 +95,12 @@ class Scene {
 
         var velocity_min = Infinity
         var velocity_max = 0
-        this.velocities.forEach(vel => { velocity_max = Math.max(vel,velocity_max); velocity_min = Math.min(vel,velocity_min) })
+        //this.velocities.forEach(vel => { velocity_max = Math.max(vel,velocity_max); velocity_min = Math.min(vel,velocity_min) })
 
         document.getElementById("collisions").innerHTML = "Collisions: " + collision;
         document.getElementById("average_collisions").innerHTML = "Average Collisions: " + collision / this.balls.length;
         document.getElementById("velocity").innerHTML = "Velocity: " + velocity;
-        document.getElementById("velocity_delta").innerHTML = "Max Velocity Delta: " + (velocity_max - velocity_min);
-        console.log(document.getElementById("velocity_delta").innerHTML)
+        //document.getElementById("velocity_delta").innerHTML = "Max Velocity Delta: " + (velocity_max - velocity_min);
     }
 }
 

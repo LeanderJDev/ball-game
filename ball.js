@@ -90,23 +90,23 @@ class Ball {
         // bottom bound
         if (this.y + props.radius >= sceneProps.height) {
             this.velY *= -1
-            this.y = sceneProps.height - props.radius
+            this.y = sceneProps.height*2 - this.y
         }
         // top bound
         if (this.y - props.radius <= 0) {
             this.velY *= -1
-            this.y = props.radius
+            this.y = -this.y
         }
 
         // left bound
         if (this.x - props.radius <= 0) {
             this.velX *= -1
-            this.x = props.radius
+            this.x = -this.x
         }
         // right bound
         if (this.x + props.radius >= sceneProps.width) {
             this.velX *= -1
-            this.x = sceneProps.width - props.radius
+            this.x = sceneProps.width*2 - this.x
         }
 
         this.collide(others)
