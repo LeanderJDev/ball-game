@@ -87,7 +87,6 @@ class Scene {
         balls.forEach(ball => { velocity += Math.sqrt(ball.velX * ball.velX + ball.velY * ball.velY), collision += ball.props.hue })
         velocity /= balls.length
         velocity *= 20
-        collision /= balls.length
         this.velocities.push(velocity)
         this.collisions.push(collision)
         chart.reset()
@@ -99,8 +98,10 @@ class Scene {
         this.velocities.forEach(vel => { velocity_max = Math.max(vel,velocity_max); velocity_min = Math.min(vel,velocity_min) })
 
         document.getElementById("collisions").innerHTML = "Collisions: " + collision;
+        document.getElementById("average_collisions").innerHTML = "Average Collisions: " + collision / this.balls.length;
         document.getElementById("velocity").innerHTML = "Velocity: " + velocity;
-        document.getElementById("velocity_delta").innerHTML = "Max Velocity Delta: " + velocity_max - velocity_min;
+        document.getElementById("velocity_delta").innerHTML = "Max Velocity Delta: " + (velocity_max - velocity_min);
+        console.log(document.getElementById("velocity_delta").innerHTML)
     }
 }
 
