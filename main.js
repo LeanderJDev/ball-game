@@ -55,7 +55,7 @@ class Scene {
                     // ball properties
                     {
                         // size 10-30
-                        radius: 15,
+                        radius: 20,
                         // random color
                         hue: 0
                     }
@@ -90,8 +90,8 @@ class Scene {
         this.velocities.push(velocity)
         this.collisions.push(collision)
         chart.reset()
-        chart.plotData(this.velocities,'#aa0000')
-        chart.plotData(this.collisions,'#00aa00')
+        //chart.plotData(this.velocities,'#aa0000')
+        //chart.plotData(this.collisions,'#00aa00')
 
         var velocity_min = Infinity
         var velocity_max = 0
@@ -108,7 +108,6 @@ class Chart {
     constructor(canvasId = 'chartCanvas') {
         this.canvas = document.getElementById(canvasId);
         this.context = this.canvas.getContext("2d");
-        this.context.translate
     }
 
     reset()
