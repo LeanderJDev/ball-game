@@ -10,9 +10,10 @@ const defaultConfig = {
 class Scene {
     // constructor function is the equivalent of
     // the init function
-    constructor(chart,canvasId = 'gameCanvas', config) {
+    constructor(collisionChart,velocityChart,canvasId = 'gameCanvas', config) {
         // get the canvas and context
-        this.chart=chart
+        this.collisionChart=collisionChart
+        this.velocityChart=velocityChart
         this.canvas = document.getElementById(canvasId)
         this.ctx = this.canvas.getContext('2d')
 
@@ -88,9 +89,10 @@ class Scene {
         velocity /= balls.length
         this.velocities.push(velocity)
         this.collisions.push(collision)
-        chart.reset()
-        //chart.plotData(this.velocities,'#aa0000')
-        //chart.plotData(this.collisions,'#00aa00')
+        collisionChart.reset()
+        velocityChart.reset()
+        velocityChart.plotData(this.velocities,'#aa0000')
+        collisionChart.plotData(this.collisions,'#00aa00')
 
         var velocity_min = Infinity
         var velocity_max = 0
@@ -106,6 +108,7 @@ class Scene {
 class Chart {
     constructor(canvasId = 'chartCanvas') {
         this.canvas = document.getElementById(canvasId);
+        console.log(this.canvas,canvasId)
         this.context = this.canvas.getContext("2d");
     }
 
@@ -117,13 +120,16 @@ class Chart {
     plotData(dataSet,color) {
         this.context.strokeStyle = color;
         this.context.beginPath();
-        this.context.moveTo(0, this.canvas.height-dataSet[0]);
+        var scale = this.canvas.height / (dataSet[dataSet.length-1]+5)
+        //var scale = 0.1
+        this.context.moveTo(0,this.canvas.height-dataSet[0]*scale);
         for (var i = 1; i < dataSet.length; i++) {
-            this.context.lineTo(i * (this.canvas.width / dataSet.length), this.canvas.height-dataSet[i]);
+            this.context.lineTo(i * (this.canvas.width / dataSet.length), this.canvas.height-dataSet[i]*scale);
         }
         this.context.stroke();
     }
 }
 
-var chart = new Chart()
-var scene = new Scene(chart)
+var collisionChart = new Chart("collisionCanvas")
+var velocityChart = new Chart("velocityCanvas")
+var scene = new Scene(collisionChart,velocityChart)

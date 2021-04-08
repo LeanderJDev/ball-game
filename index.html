@@ -6,15 +6,24 @@
 </head>
 
 <body>
-    <canvas id="gameCanvas" style="border: 1px solid black;"></canvas>
-    <p id='collisions'>Collsions: 0</p>
-    <p id='average_collisions'>Average Collisions: 0</p>
-    <p id='velocity'>Velocity: 0</p>
-    <p id='velocity_delta'>Max Velocity Delta: 0</p>
+    <div>
+        <canvas id="gameCanvas" style="border: 1px solid black;float:left"></canvas>
+        <div style="float:left">
+            <div style="margin: 25px 50px 25px 50px;">
+                <p id='velocity'>Velocity: 0</p>
+                <p id='velocity_delta'>Max Velocity Delta: 0</p>
+                <canvas id="velocityCanvas" style="border: 1px solid black;""></canvas>
+            </div>
+            <div style="margin: 25px 50px 25px 50px;">
+                <p id='collisions'>Collsions: 0</p>
+                <p id='average_collisions'>Average Collisions: 0</p>
+                <canvas id="collisionCanvas" style="border: 1px solid black;""></canvas>
+            </div>
+        </div>
+    </div>
     
-    <canvas id="chartCanvas"></canvas>
-    <script src="ball.js"></script>
-    <script src="main.js"></script>
+    <script src=" ball.js"></script>
+                    <script src="main.js"></script>
 </body>
 
 </html>
