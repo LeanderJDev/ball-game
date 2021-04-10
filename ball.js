@@ -8,8 +8,10 @@ class Ball {
     constructor(x = 0, y = 0, sceneProps, props) {
         this.props = {
             ...defaultProps,
-            startVelX: (Math.random() + 1) * (Math.floor(Math.random() * 2) || -1),
-            startVelY: (Math.random() + 1) * (Math.floor(Math.random() * 2) || -1),
+            startVelX:0,
+            startVelY:(y-sceneProps.height/2)/25,
+            //startVelX: (Math.random() + 1) * (Math.floor(Math.random() * 2) || -1),
+            //startVelY: (Math.random() + 1) * (Math.floor(Math.random() * 2) || -1),
             ...props
         }
         this.sceneProps = sceneProps
@@ -64,10 +66,11 @@ class Ball {
 
         var vx = this.velX * ux + other.velX * tx
         var vy = this.velY * uy + other.velY * ty
-        this.velX = -other.velX * ux + this.velX * tx
-        this.velY = -other.velY * uy + this.velY * ty
+        this.velX = other.velX * ux + this.velX * tx
+        this.velY = other.velY * uy + this.velY * ty
         other.velX = vx
         other.velY = vy
+        console.log((this.velX+this.velY),(other.velX+other.velY),ux,uy)
     }
 
     collide(others) {
