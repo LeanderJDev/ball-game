@@ -43,10 +43,8 @@ class Scene {
         // build an array of ball objects
         const balls = []
 
-        balls.push(new Ball( config.width/2+10, config.height/2+50, {...config,},{radius: 20,hue: 0}))
-        balls.push(new Ball(  config.width/2, config.height/2-50, {...config,},{radius: 20,hue: 0}))
 
-       /*  for (let i = 0; i < 30; i++) {
+        for (let i = 0; i < 20; i++) {
             balls.push(
                 new Ball(
                     // random X Y position
@@ -65,7 +63,7 @@ class Scene {
                     }
                 )
             )
-        } */
+        }
 
         this.balls = balls
     }
@@ -88,7 +86,7 @@ class Scene {
 
         var velocity = 0
         var collision = 0
-        balls.forEach(ball => { velocity += Math.sqrt(ball.velX * ball.velX + ball.velY * ball.velY),console.log(ball.velX,ball.velY), collision += ball.props.hue })
+        balls.forEach(ball => { velocity += Math.sqrt(ball.velX * ball.velX + ball.velY * ball.velY), collision += ball.props.hue })
         velocity /= balls.length
         this.velocities.push(velocity)
         this.collisions.push(collision)
@@ -111,7 +109,6 @@ class Scene {
 class Chart {
     constructor(canvasId = 'chartCanvas') {
         this.canvas = document.getElementById(canvasId);
-        console.log(this.canvas,canvasId)
         this.context = this.canvas.getContext("2d");
     }
 

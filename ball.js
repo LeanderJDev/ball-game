@@ -8,10 +8,8 @@ class Ball {
     constructor(x = 0, y = 0, sceneProps, props) {
         this.props = {
             ...defaultProps,
-            startVelX:0,
-            startVelY:(y-sceneProps.height/2)/25,
-            //startVelX: (Math.random() + 1) * (Math.floor(Math.random() * 2) || -1),
-            //startVelY: (Math.random() + 1) * (Math.floor(Math.random() * 2) || -1),
+            startVelX: (Math.random() + 1) * (Math.floor(Math.random() * 2) || -1),
+            startVelY: (Math.random() + 1) * (Math.floor(Math.random() * 2) || -1),
             ...props
         }
         this.sceneProps = sceneProps
@@ -54,8 +52,6 @@ class Ball {
         this.x -= ax
         this.y -= ay
 
-
-
         dx = other.x - this.x
         dy = other.y - this.y
         m = Math.sqrt(dx * dx + dy * dy)
@@ -64,13 +60,16 @@ class Ball {
         const tx = -uy
         const ty = ux
 
-        var vx = this.velX * ux + other.velX * tx
-        var vy = this.velY * uy + other.velY * ty
-        this.velX = other.velX * ux + this.velX * tx
-        this.velY = other.velY * uy + this.velY * ty
-        other.velX = vx
-        other.velY = vy
-        console.log((this.velX+this.velY),(other.velX+other.velY),ux,uy)
+        var v1u = ux * this.velX + uy * this.velY
+        var v2u = ux * other.velX + uy * other.velY
+        var v1t = tx * this.velX + ty * this.velY
+        var v2t = tx * other.velX + ty * other.velY
+
+        this.velX = v2u * ux + v1t * tx
+        this.velY = v2u * uy + v1t * ty
+        other.velX = v1u * ux + v2t * tx
+        other.velY = v1u * uy + v2t * ty
+        console.log(ux,uy,v1u,v2u,v1t,v2t)
     }
 
     collide(others) {
