@@ -69,7 +69,6 @@ class Ball {
         this.velY = v2u * uy + v1t * ty
         other.velX = v1u * ux + v2t * tx
         other.velY = v1u * uy + v2t * ty
-        console.log(ux,uy,v1u,v2u,v1t,v2t)
     }
 
     collide(others) {
