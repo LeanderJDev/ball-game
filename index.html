@@ -14,25 +14,27 @@
     <meta property="og:title" content="The Ballgame" />
     <meta property="og:description" content="fun ball physics simulation" />
     <meta property="og:image" content="icon.png" />
+    <link href="style.css" rel="stylesheet">
 </head>
 
 <body>
-    <div style = "background: rgb(80, 80, 80);">
-        <canvas id="gameCanvas" style="border: 1px solid black;float:left"></canvas>
+    <p id="title">The Ballgame</p>
+    <div>
+        <canvas id="gameCanvas" style="float:left"></canvas>
         <div style="float:left">
-            <div style="margin: 25px 50px 25px 50px;">
+            <div id="chart-div">
                 <h4>Velocity</h4>
                 <p id='velocity'>Velocity: 0</p>
                 <p id='velocity_delta'>Max Velocity Delta: 0</p>
-                <canvas id="velocityCanvas" width=300 height=150 style="border: 1px solid black;""></canvas>
-                <canvas id="recentVelocityCanvas" width=200 height=150 style="border: 1px solid black;""></canvas>
+                <canvas id="velocityCanvas" width=300 height=150></canvas>
+                <canvas id="recentVelocityCanvas" width=200 height=150></canvas>
             </div>
-            <div style=" margin: 25px 50px 25px 50px;">
+            <div id="chart-div">
                     <h4>Collisions</h4>
                     <p id='total_collisions'>Collsions: 0</p>
                     <p id='average_collisions'>Average Collisions: 0</p>
-                    <canvas id="collisionCanvas" width=300 height=150 style="border: 1px solid black;""></canvas>
-                    <canvas id="recentCollisionCanvas" width=200 height=150 style="border: 1px solid black;""></canvas>
+                    <canvas id="collisionCanvas" width=300 height=150></canvas>
+                    <canvas id="recentCollisionCanvas" width=200 height=150></canvas>
             </div>
         </div>
     </div>

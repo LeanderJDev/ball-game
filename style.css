@@ -1,0 +1,17 @@
+canvas {
+    color: red;
+    border: 2px solid rgb(30, 30, 30);
+    background-color: rgb(55, 55, 55);
+}
+body {
+    background-color: rgb(40, 40, 40);
+    color: rgb(130, 130, 130);
+    font-family: sans-serif;
+}
+#title {
+    font-size: 72px;
+    margin: 10px 10px 10px 10px;
+}
+#chart-div {
+    margin: 25px 25px 25px 25px;
+}
