@@ -10,10 +10,12 @@ const defaultConfig = {
 class Scene {
     // constructor function is the equivalent of
     // the init function
-    constructor(collisionChart,velocityChart,canvasId = 'gameCanvas', config) {
+    constructor(canvasId = 'gameCanvas', config) {
         // get the canvas and context
-        this.collisionChart=collisionChart
-        this.velocityChart=velocityChart
+        this.collisionChart=new Chart("collisionCanvas")
+        this.velocityChart=new Chart("velocityCanvas")
+        this.recentCollisionChart=new Chart("recentCollisionCanvas")
+        this.recentVelocityChart=new Chart("recentVelocityCanvas")
         this.canvas = document.getElementById(canvasId)
         this.ctx = this.canvas.getContext('2d')
 
@@ -87,21 +89,22 @@ class Scene {
         var velocity = 0
         var collision = 0
         balls.forEach(ball => { velocity += Math.sqrt(ball.velX * ball.velX + ball.velY * ball.velY), collision += ball.props.hue })
-        velocity /= balls.length
+        //velocity /= balls.length
         this.velocities.push(velocity)
         this.collisions.push(collision)
-        collisionChart.reset()
-        velocityChart.reset()
-        velocityChart.plotData(this.velocities,'#aa0000')
-        collisionChart.plotData(this.collisions,'#00aa00')
+
+        this.velocityChart.plotData(this.velocities,'#aa0000')
+        this.collisionChart.plotData(this.collisions,'#00aa00')
+        this.recentVelocityChart.plotData(this.velocities.slice(this.velocities.length-2000,this.velocities.length+1),'#aa0000')
+        this.recentCollisionChart.plotData(this.collisions.slice(this.collisions.length-2000,this.collisions.length+1),'#00aa00')
 
         var velocity_min = Infinity
         var velocity_max = 0
         //this.velocities.forEach(vel => { velocity_max = Math.max(vel,velocity_max); velocity_min = Math.min(vel,velocity_min) })
 
-        document.getElementById("collisions").innerHTML = "Collisions: " + collision;
-        document.getElementById("average_collisions").innerHTML = "Average Collisions: " + collision / this.balls.length;
-        document.getElementById("velocity").innerHTML = "Velocity: " + velocity;
+        document.getElementById("total_collisions").innerHTML = collision.toFixed(2) + " total";
+        document.getElementById("average_collisions").innerHTML = collision / this.balls.length + " per ball";
+        document.getElementById("velocity").innerHTML = "Velocity: " + velocity.toFixed(2);
         //document.getElementById("velocity_delta").innerHTML = "Max Velocity Delta: " + (velocity_max - velocity_min);
     }
 }
@@ -118,18 +121,19 @@ class Chart {
     }
 
     plotData(dataSet,color) {
+        this.reset()
         this.context.strokeStyle = color;
         this.context.beginPath();
-        var scale = this.canvas.height / (dataSet[dataSet.length-1]+5)
+        var scale = this.canvas.height / (dataSet[dataSet.length-1]+20)
         //var scale = 0.1
         this.context.moveTo(0,this.canvas.height-dataSet[0]*scale);
         for (var i = 1; i < dataSet.length; i++) {
             this.context.lineTo(i * (this.canvas.width / dataSet.length), this.canvas.height-dataSet[i]*scale);
         }
+        this.context.lineWidth = 2
         this.context.stroke();
     }
 }
 
-var collisionChart = new Chart("collisionCanvas")
-var velocityChart = new Chart("velocityCanvas")
-var scene = new Scene(collisionChart,velocityChart)
+
+var scene = new Scene()

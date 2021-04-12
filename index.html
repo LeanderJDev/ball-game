@@ -21,20 +21,24 @@
         <canvas id="gameCanvas" style="border: 1px solid black;float:left"></canvas>
         <div style="float:left">
             <div style="margin: 25px 50px 25px 50px;">
+                <h4>Velocity</h4>
                 <p id='velocity'>Velocity: 0</p>
                 <p id='velocity_delta'>Max Velocity Delta: 0</p>
-                <canvas id="velocityCanvas" style="border: 1px solid black;""></canvas>
+                <canvas id="velocityCanvas" width=300 height=150 style="border: 1px solid black;""></canvas>
+                <canvas id="recentVelocityCanvas" width=200 height=150 style="border: 1px solid black;""></canvas>
             </div>
             <div style=" margin: 25px 50px 25px 50px;">
-                    <p id='collisions'>Collsions: 0</p>
+                    <h4>Collisions</h4>
+                    <p id='total_collisions'>Collsions: 0</p>
                     <p id='average_collisions'>Average Collisions: 0</p>
-                    <canvas id="collisionCanvas" style="border: 1px solid black;""></canvas>
+                    <canvas id="collisionCanvas" width=300 height=150 style="border: 1px solid black;""></canvas>
+                    <canvas id="recentCollisionCanvas" width=200 height=150 style="border: 1px solid black;""></canvas>
             </div>
         </div>
     </div>
     
     <script src=" ball.js"></script>
-                        <script src="main.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
