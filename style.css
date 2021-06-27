@@ -14,25 +14,26 @@ body {
     margin: 10px 10px 10px 10px;
 }
 #gameCanvas{
-    float:left;
+    display: inline-block;
 }
 #statistics{
+    vertical-align: top;
     margin: 20px 20px;
-    float:left;
+    display: inline-block;
 }
 .stat{
-    float:left;
 }
 .chart{
 }
 .stat-value{
     font-size: 15px;
     margin: 10px 10px;
-    float: left;
+    display: inline-block;
+    vertical-align: middle;
 }
 .stat-title{
-    float: left;
     font-size: 30px;
     font-style: bold;
     margin: 10px 0px;
+    display: inline-block;
 }
