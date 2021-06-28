@@ -9,31 +9,34 @@ body {
     color: rgb(130, 130, 130);
     font-family: sans-serif;
 }
-#title {
-    font-size: 72px;
-    margin: 10px 10px 10px 10px;
+.main{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: center;
 }
 #gameCanvas{
-    display: inline-block;
+    width:800px;
+    height:800px;
+    margin:10px;
 }
 #statistics{
-    vertical-align: top;
-    margin: 20px 20px;
-    display: inline-block;
-}
-.stat{
-}
-.chart{
+    margin:10px;
 }
 .stat-value{
     font-size: 15px;
-    margin: 10px 10px;
+    padding: 5px;
     display: inline-block;
     vertical-align: middle;
 }
 .stat-title{
     font-size: 30px;
     font-style: bold;
-    margin: 10px 0px;
     display: inline-block;
+}
+h1{
+    text-align: center;
+    font-size: 36pt;
+    margin: 5px;
+    padding: 5px;
+    background:black;
 }
