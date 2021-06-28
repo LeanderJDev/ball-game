@@ -33,6 +33,9 @@ class Scene {
         this.velocities = []
         this.collisions = []
 
+        this.velocity_min = Infinity
+        this.velocity_max = 0
+
         this.createBalls()
 
         // begin update loop
@@ -46,7 +49,7 @@ class Scene {
         const balls = []
 
 
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 2; i++) {
             balls.push(
                 new Ball(
                     // random X Y position
@@ -89,6 +92,10 @@ class Scene {
         var velocity = 0
         var collision = 0
         balls.forEach(ball => { velocity += Math.sqrt(ball.velX * ball.velX + ball.velY * ball.velY), collision += ball.props.hue })
+
+        this.velocity_min = Math.min(this.velocity_min,velocity)
+        this.velocity_max = Math.max(this.velocity_max,velocity)
+
         //velocity /= balls.length
         this.velocities.push(velocity)
         this.collisions.push(collision)
@@ -98,14 +105,10 @@ class Scene {
         this.recentVelocityChart.plotData(this.velocities.slice(this.velocities.length-2000,this.velocities.length+1),'#aa0000')
         this.recentCollisionChart.plotData(this.collisions.slice(this.collisions.length-2000,this.collisions.length+1),'#00aa00')
 
-        var velocity_min = Infinity
-        var velocity_max = 0
-        //this.velocities.forEach(vel => { velocity_max = Math.max(vel,velocity_max); velocity_min = Math.min(vel,velocity_min) })
-
         document.getElementById("total_collisions").innerHTML = collision.toFixed(2) + " total";
         document.getElementById("average_collisions").innerHTML = collision / this.balls.length + " per ball";
         document.getElementById("velocity").innerHTML = "Velocity: " + velocity.toFixed(2);
-        //document.getElementById("velocity_delta").innerHTML = "Max Velocity Delta: " + (velocity_max - velocity_min);
+        document.getElementById("velocity_delta").innerHTML = "Max Velocity Delta: " + (this.velocity_max - this.velocity_min).toFixed(2);
     }
 }
 
