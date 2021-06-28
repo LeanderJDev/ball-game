@@ -29,6 +29,7 @@ body {
     vertical-align: middle;
 }
 .stat-title{
+    margin:5px;
     font-size: 30px;
     font-style: bold;
     display: inline-block;
