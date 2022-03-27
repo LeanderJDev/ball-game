@@ -38,6 +38,7 @@ class Ball {
     }
 
     bounce(other) {
+        console.log(this,other,this.velX*2)
         var dx = other.x - this.x
         var dy = other.y - this.y
         const radii = this.props.radius + other.props.radius
@@ -64,11 +65,11 @@ class Ball {
         var v2u = ux * other.velX + uy * other.velY
         var v1t = tx * this.velX + ty * this.velY
         var v2t = tx * other.velX + ty * other.velY
-
         this.velX = v2u * ux + v1t * tx
         this.velY = v2u * uy + v1t * ty
         other.velX = v1u * ux + v2t * tx
         other.velY = v1u * uy + v2t * ty
+        console.log(this,other,this.velX*2)
     }
 
     collide(others) {

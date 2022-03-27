@@ -100,15 +100,16 @@ class Scene {
         this.velocities.push(velocity)
         this.collisions.push(collision)
 
-        this.velocityChart.plotData(this.velocities,'#aa0000')
-        this.collisionChart.plotData(this.collisions,'#00aa00')
-        this.recentVelocityChart.plotData(this.velocities.slice(this.velocities.length-2000,this.velocities.length+1),'#aa0000')
-        this.recentCollisionChart.plotData(this.collisions.slice(this.collisions.length-2000,this.collisions.length+1),'#00aa00')
+        //this.velocityChart.plotData(this.velocities,'#aa0000')
+        //this.collisionChart.plotData(this.collisions,'#00aa00')
+        //this.recentVelocityChart.plotData(this.velocities.slice(this.velocities.length-2000,this.velocities.length+1),'#aa0000')
+        //this.recentCollisionChart.plotData(this.collisions.slice(this.collisions.length-2000,this.collisions.length+1),'#00aa00')
 
         document.getElementById("total_collisions").innerHTML = collision.toFixed(2) + " total";
         document.getElementById("average_collisions").innerHTML = collision / this.balls.length + " per ball";
         document.getElementById("velocity").innerHTML = "Velocity: " + velocity.toFixed(2);
-        document.getElementById("velocity_delta").innerHTML = "Max Velocity Delta: " + (this.velocity_max - this.velocity_min).toFixed(2);
+        document.getElementById("velocity_delta").innerHTML = "Current Velocity Delta: " + (-this.velocities[0] + velocity).toFixed(2);
+        //document.getElementById("velocity_delta").innerHTML = "Max Velocity Delta: " + (this.velocity_max - this.velocity_min).toFixed(2);
     }
 }
 
